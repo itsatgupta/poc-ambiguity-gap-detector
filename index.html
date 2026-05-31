@@ -14,7 +14,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1a202c 100%);
             min-height: 100vh;
             padding: 20px;
             color: #e2e8f0;
@@ -25,44 +25,48 @@
             margin: 0 auto;
         }
 
-        header {
-            background: #0f172a;
-            padding: 32px;
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 40px 20px;
             border-radius: 12px;
-            margin-bottom: 32px;
+            margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #6366f1;
         }
 
-        h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-            color: #f1f5f9;
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #6366f1 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .header-subtitle {
+        .header p {
+            color: #cbd5e1;
             font-size: 14px;
-            color: #94a3b8;
         }
 
-        .header-badge {
+        .industry-label {
             display: inline-block;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
+            background: rgba(99, 102, 241, 0.2);
+            color: #a78bfa;
+            padding: 6px 12px;
+            border-radius: 6px;
             font-size: 12px;
-            font-weight: 600;
             margin-top: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
         }
 
         .content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 32px;
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
             .content {
                 grid-template-columns: 1fr;
             }
@@ -73,43 +77,49 @@
             border: 1px solid #334155;
             border-radius: 12px;
             padding: 24px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #475569;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
         }
 
         .card h2 {
-            font-size: 16px;
+            font-size: 18px;
             margin-bottom: 16px;
-            color: #f1f5f9;
+            color: #e2e8f0;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
         .card h2::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
-            border-radius: 2px;
+            content: '→';
+            color: #6366f1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #cbd5e1;
+            font-weight: 500;
         }
 
         textarea {
             width: 100%;
-            min-height: 280px;
+            min-height: 200px;
             padding: 12px;
             background: #0f172a;
             border: 1px solid #334155;
             border-radius: 8px;
             color: #e2e8f0;
-            font-family: 'Monaco', 'Courier New', monospace;
+            font-family: 'Monaco', 'Menlo', monospace;
             font-size: 13px;
-            line-height: 1.6;
             resize: vertical;
-        }
-
-        textarea::placeholder {
-            color: #64748b;
+            transition: border-color 0.3s ease;
         }
 
         textarea:focus {
@@ -122,6 +132,7 @@
             display: flex;
             gap: 12px;
             margin-top: 16px;
+            align-items: center;
         }
 
         button {
@@ -131,10 +142,10 @@
             color: white;
             border: none;
             border-radius: 8px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 14px;
         }
 
         button:hover {
@@ -152,93 +163,70 @@
             transform: none;
         }
 
-        .button-secondary {
-            background: linear-gradient(135deg, #475569 0%, #334155 100%);
-        }
-
-        .button-secondary:hover {
-            box-shadow: 0 8px 16px rgba(71, 85, 105, 0.3);
-        }
-
         .hint {
+            color: #94a3b8;
             font-size: 12px;
-            color: #94a3b8;
-            margin-top: 8px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            font-style: italic;
+            margin-top: 4px;
         }
 
-        .output-section {
-            min-height: 400px;
-            max-height: 600px;
-            overflow-y: auto;
+        #results {
+            display: none;
+            margin-bottom: 30px;
         }
 
-        .loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-            gap: 12px;
-            color: #94a3b8;
+        #results.show {
+            display: block;
         }
 
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 3px solid #334155;
-            border-top-color: #6366f1;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+        .results-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .results-header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            padding: 16px 24px;
+            font-weight: 600;
+            color: white;
         }
 
-        .error {
-            background: #7f1d1d;
-            border: 1px solid #dc2626;
-            color: #fecaca;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        .error-icon {
-            display: inline-block;
-            margin-right: 8px;
+        .table-wrapper {
+            overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 16px;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #334155;
             font-size: 13px;
         }
 
-        th {
-            background: rgba(99, 102, 241, 0.1);
-            color: #c7d2fe;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
+        thead {
+            background: #0f172a;
+            border-bottom: 2px solid #334155;
         }
 
-        tr:hover {
-            background: rgba(99, 102, 241, 0.05);
+        th {
+            padding: 12px;
+            text-align: left;
+            color: #a78bfa;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
         }
 
         td {
-            color: #cbd5e1;
+            padding: 12px;
+            border-bottom: 1px solid #1e293b;
+            color: #e2e8f0;
+        }
+
+        tbody tr:hover {
+            background: rgba(99, 102, 241, 0.1);
         }
 
         .issue-type {
@@ -247,154 +235,272 @@
             border-radius: 4px;
             font-size: 11px;
             font-weight: 600;
-            width: 100%;
-            text-align: center;
+            white-space: nowrap;
         }
 
-        .issue-ambiguous {
-            background: #fef3c7;
-            color: #92400e;
+        .issue-ambiguity {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
         }
 
         .issue-missing {
-            background: #fca5a5;
-            color: #7f1d1d;
+            background: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
         }
 
-        .issue-conflicting {
-            background: #a5b4fc;
-            color: #312e81;
+        .issue-conflict {
+            background: rgba(234, 179, 8, 0.2);
+            color: #fed7aa;
         }
 
-        .no-results {
-            text-align: center;
-            color: #94a3b8;
-            padding: 40px 20px;
-        }
-
-        footer {
+        .loading {
+            display: none;
             text-align: center;
             padding: 20px;
-            color: #64748b;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #334155;
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error {
+            display: none;
+            padding: 16px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            color: #fca5a5;
+            margin-bottom: 20px;
             font-size: 13px;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .error-close {
+            float: right;
+            cursor: pointer;
+            color: #fca5a5;
+            opacity: 0.7;
+        }
+
+        .error-close:hover {
+            opacity: 1;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px 20px;
+            color: #64748b;
+            font-size: 12px;
+            border-top: 1px solid #334155;
             margin-top: 40px;
         }
 
-        footer a {
+        .footer a {
             color: #6366f1;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        footer a:hover {
+        .footer a:hover {
             color: #8b5cf6;
             text-decoration: underline;
         }
 
-        .success-message {
-            background: #064e3b;
-            border: 1px solid #10b981;
-            color: #d1fae5;
+        .sample-button {
+            padding: 8px 12px;
+            background: rgba(99, 102, 241, 0.2);
+            color: #a78bfa;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sample-button:hover {
+            background: rgba(99, 102, 241, 0.3);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .clear-button {
+            padding: 12px 16px;
+            background: transparent;
+            color: #94a3b8;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 0;
+        }
+
+        .clear-button:hover {
+            border-color: #6366f1;
+            color: #cbd5e1;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .stat {
+            background: rgba(99, 102, 241, 0.1);
             padding: 12px;
             border-radius: 8px;
-            margin-bottom: 16px;
-            font-size: 13px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #a78bfa;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
+        <div class="header">
             <h1>Requirements Quality Reviewer</h1>
-            <div class="header-subtitle">Analyze requirements documents for ambiguities, gaps, and conflicts</div>
-            <div class="header-badge">IT Services / Consulting · Ambiguity & Gap Detector</div>
-        </header>
+            <p>Identify ambiguities, gaps, and conflicts in your requirements documents</p>
+            <div class="industry-label">IT Services / Consulting · Ambiguity & Gap Detector</div>
+        </div>
+
+        <div class="error" id="error">
+            <span class="error-close" onclick="document.getElementById('error').classList.remove('show')">×</span>
+            <span id="error-text"></span>
+        </div>
 
         <div class="content">
             <div class="card">
                 <h2>Requirements Document</h2>
-                <textarea id="requirementsInput" placeholder="Paste your requirements document here...">System shall implement user authentication.
-
-The application should be fast and responsive.
-
-Users must be able to upload files (maximum 50MB per file, or 500MB per session).
-
-The system shall automatically backup data every night and when explicitly requested by admin.
-
-All data shall be encrypted. Sensitive data requires AES-256 encryption. Password fields must use bcrypt with salt rounds >= 10.
-
-Mobile users need offline capabilities. Desktop users require real-time collaboration.
-
-The API response time must not exceed 2 seconds. Average response time should be under 1 second.
-
-Admins can delete user accounts. Users cannot modify their own roles. System automatically logs all administrative actions.
-
-Reports must be generated in PDF, Excel, or CSV format as requested. The system shall generate reports efficiently.
-
-The system shall support unlimited concurrent users and handle peak loads gracefully.
-</textarea>
+                <label for="requirements">Paste your requirements document below:</label>
+                <textarea id="requirements" placeholder="Paste requirements here...">
+[REQ-001] The system shall be user-friendly.
+[REQ-002] The API must support high performance.
+[REQ-003] Users can login using username and password, and also via SSO, whichever is faster.
+[REQ-004] The database should handle at least 10,000 concurrent users.
+[REQ-005] The UI shall be responsive and work on mobile devices.
+[REQ-006] Data must be encrypted, secured, and safe.
+[REQ-007] The system should process requests quickly.
+[REQ-008] Reports must be generated within 24 hours and also in real-time.
+[REQ-009] All user actions shall be logged for compliance.
+[REQ-010] The system performs validation on all inputs before processing.</textarea>
                 <div class="button-group">
-                    <button onclick="analyzeRequirements()" id="analyzeBtn">Analyze Document</button>
-                    <button class="button-secondary" onclick="clearResults()">Clear</button>
+                    <button onclick="analyzeDocument()">Analyze Requirements</button>
+                    <button class="clear-button" onclick="clearAnalysis()">Clear</button>
                 </div>
-                <div class="hint">💡 Try it → Click Analyze with sample data or paste your own requirements</div>
+                <div class="hint">Try it → Just click "Analyze Requirements" to see the quality issues</div>
             </div>
 
             <div class="card">
-                <h2>Analysis Results</h2>
-                <div class="output-section" id="resultsContainer">
-                    <div class="no-results">
-                        <p>Analysis results will appear here</p>
-                        <p style="font-size: 12px; margin-top: 8px; color: #64748b;">Paste requirements and click "Analyze Document"</p>
-                    </div>
+                <h2>Analysis Settings</h2>
+                <label>Detection Modes:</label>
+                <div style="margin-bottom: 16px;">
+                    <label style="display: flex; align-items: center; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" id="detectAmbiguity" checked style="margin-right: 8px; cursor: pointer;">
+                        <span>Detect Ambiguities (vague verbs, undefined terms)</span>
+                    </label>
+                    <label style="display: flex; align-items: center; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" id="detectMissing" checked style="margin-right: 8px; cursor: pointer;">
+                        <span>Detect Missing Requirements (implied gaps)</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="detectConflict" checked style="margin-right: 8px; cursor: pointer;">
+                        <span>Detect Conflicting Requirements</span>
+                    </label>
                 </div>
+
+                <label style="margin-top: 20px;">Format Preferences:</label>
+                <div style="margin-bottom: 16px;">
+                    <label style="display: flex; align-items: center; margin-bottom: 8px; cursor: pointer;">
+                        <input type="radio" name="format" value="detailed" checked style="margin-right: 8px; cursor: pointer;">
+                        <span>Detailed Analysis (with context)</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="format" value="compact" style="margin-right: 8px; cursor: pointer;">
+                        <span>Compact Analysis (table only)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div id="results" class="results-card">
+            <div class="results-header">Quality Analysis Results</div>
+            <div style="padding: 24px;">
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <span>Analyzing your requirements document...</span>
+                </div>
+                <div id="resultsContent"></div>
             </div>
         </div>
     </div>
 
-    <footer>
+    <div class="footer">
         Powered by Bharat AI · For more information connect <a href="mailto:atulmca@yahoo.com">atulmca@yahoo.com</a>
-    </footer>
+    </div>
 
     <script>
-        async function analyzeRequirements() {
-            const input = document.getElementById('requirementsInput').value.trim();
-            const resultsContainer = document.getElementById('resultsContainer');
-            const analyzeBtn = document.getElementById('analyzeBtn');
-
-            if (!input) {
-                resultsContainer.innerHTML = '<div class="error"><span class="error-icon">⚠️</span>Please enter a requirements document</div>';
+        async function analyzeDocument() {
+            const requirements = document.getElementById('requirements').value.trim();
+            
+            if (!requirements) {
+                showError('Please paste a requirements document to analyze.');
                 return;
             }
 
-            analyzeBtn.disabled = true;
-            resultsContainer.innerHTML = '<div class="loading"><div class="spinner"></div><span>Analyzing requirements...</span></div>';
+            const detectAmbiguity = document.getElementById('detectAmbiguity').checked;
+            const detectMissing = document.getElementById('detectMissing').checked;
+            const detectConflict = document.getElementById('detectConflict').checked;
+            const format = document.querySelector('input[name="format"]:checked').value;
+
+            showLoading();
+            clearError();
 
             try {
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         model: 'claude-haiku-4-5-20251001',
-                        max_tokens: 2048,
+                        max_tokens: 4096,
                         messages: [
                             {
                                 role: 'user',
-                                content: `You are a senior requirements quality reviewer. Analyze the following requirements document and identify ALL issues. For each issue, provide: Line number (or approximation), Issue Type (Ambiguous, Missing, or Conflicting), Original Text (exact quote), and Suggested Fix (specific, measurable, clear version).
-
-Format your response EXACTLY as a table with these columns separated by |:
-Line # | Issue Type | Original Text | Suggested Fix
-
-Return ONLY the table rows (no header, no markdown, just pipe-separated values). If no issues found in a category, still list them.
-
-Requirements document:
-"""
-${input}
-"""
-
-Be extremely thorough. Identify vague verbs (should, may, nice to have), undefined terms, missing acceptance criteria, implicit requirements not stated, and any contradictions. Output table rows only.`
+                                content: buildPrompt(requirements, detectAmbiguity, detectMissing, detectConflict, format)
                             }
                         ]
                     })
@@ -407,61 +513,199 @@ Be extremely thorough. Identify vague verbs (should, may, nice to have), undefin
                 const data = await response.json();
                 const analysisText = data.content[0].text;
 
-                displayResults(analysisText);
+                displayResults(analysisText, requirements);
             } catch (error) {
-                console.error('Error:', error);
-                resultsContainer.innerHTML = `<div class="error"><span class="error-icon">❌</span>Error analyzing requirements: ${error.message}</div>`;
-            } finally {
-                analyzeBtn.disabled = false;
+                showError(`Analysis failed: ${error.message}`);
+                hideLoading();
             }
         }
 
-        function displayResults(analysisText) {
-            const resultsContainer = document.getElementById('resultsContainer');
-            const lines = analysisText.trim().split('\n').filter(line => line.trim());
+        function buildPrompt(requirements, ambiguity, missing, conflict, format) {
+            let prompt = `You are an expert requirements quality analyst. Analyze the following requirements document and identify quality issues.
 
-            if (lines.length === 0) {
-                resultsContainer.innerHTML = '<div class="no-results"><p>No issues found in requirements document</p></div>';
-                return;
+REQUIREMENTS DOCUMENT:
+${requirements}
+
+ANALYSIS INSTRUCTIONS:
+${ambiguity ? '1. Identify AMBIGUOUS statements (vague verbs like "shall be", "should", "may"; undefined terms; missing acceptance criteria)\n' : ''}${missing ? '2. Identify MISSING requirements (things implied but not explicitly stated)\n' : ''}${conflict ? '3. Identify CONFLICTING requirements (contradictory or mutually exclusive statements)\n' : ''}
+
+${format === 'detailed' ? `OUTPUT FORMAT (Detailed):
+Provide analysis as a structured table with these columns:
+- Line # (requirement number or approximate line)
+- Issue Type (Ambiguity/Missing/Conflict)
+- Original Text (exact quote from requirements)
+- Suggested Fix (specific, measurable correction)
+
+After the table, provide a brief summary with statistics.` : `OUTPUT FORMAT (Compact):
+Provide ONLY a clean markdown table with columns:
+| Line # | Issue Type | Original Text | Suggested Fix |
+
+No additional text, just the table.`}
+
+Each issue must be specific and actionable. Use concrete language. Focus on making requirements testable and unambiguous.`;
+
+            return prompt;
+        }
+
+        function displayResults(analysisText, requirements) {
+            hideLoading();
+
+            const resultsContent = document.getElementById('resultsContent');
+            
+            try {
+                // Extract table from markdown
+                const tableMatch = analysisText.match(/\|[\s\S]*?\n\|[:\-\s|]+\n([\s\S]*?)(?=\n\n|$)/);
+                
+                if (tableMatch) {
+                    const tableData = parseMarkdownTable(tableMatch[0]);
+                    resultsContent.innerHTML = renderTable(tableData) + 
+                                              renderStats(tableData) +
+                                              renderSummary(analysisText);
+                } else {
+                    // Fallback: display raw analysis
+                    resultsContent.innerHTML = `<pre style="background: #0f172a; padding: 16px; border-radius: 8px; overflow-x: auto; color: #e2e8f0; font-size: 13px; line-height: 1.6;">${escapeHtml(analysisText)}</pre>`;
+                }
+
+                document.getElementById('results').classList.add('show');
+            } catch (error) {
+                resultsContent.innerHTML = `<pre style="color: #fca5a5;">${escapeHtml(analysisText)}</pre>`;
+                document.getElementById('results').classList.add('show');
+            }
+        }
+
+        function parseMarkdownTable(markdownTable) {
+            const lines = markdownTable.split('\n').filter(line => line.trim());
+            const data = [];
+
+            for (let i = 0; i < lines.length; i++) {
+                if (i === 0 || i === 1) continue; // Skip header and separator
+
+                const cells = lines[i].split('|').map(cell => cell.trim()).filter(cell => cell);
+                if (cells.length >= 4) {
+                    data.push({
+                        lineNum: cells[0],
+                        issueType: cells[1],
+                        originalText: cells[2],
+                        suggestedFix: cells[3]
+                    });
+                }
             }
 
-            let tableHTML = '<div class="success-message">✓ Analysis complete. Found ' + lines.length + ' quality issues.</div>';
-            tableHTML += '<table><thead><tr><th>Line #</th><th>Issue Type</th><th>Original Text</th><th>Suggested Fix</th></tr></thead><tbody>';
+            return data;
+        }
 
-            lines.forEach(line => {
-                const parts = line.split('|').map(p => p.trim());
-                if (parts.length >= 4) {
-                    const lineNum = parts[0];
-                    const issueType = parts[1];
-                    const original = parts[2];
-                    const fix = parts[3];
+        function renderTable(tableData) {
+            if (!tableData || tableData.length === 0) return '';
 
-                    const issueClass = issueType.toLowerCase().includes('ambiguous') ? 'issue-ambiguous' :
-                                      issueType.toLowerCase().includes('missing') ? 'issue-missing' :
-                                      issueType.toLowerCase().includes('conflicting') ? 'issue-conflicting' : '';
+            const rows = tableData.map(item => {
+                const issueClass = getIssueClass(item.issueType);
+                return `
+                    <tr>
+                        <td style="font-weight: 600; color: #a78bfa;">${escapeHtml(item.lineNum)}</td>
+                        <td><span class="issue-type ${issueClass}">${escapeHtml(item.issueType)}</span></td>
+                        <td style="color: #cbd5e1; font-family: monospace; font-size: 12px;">${escapeHtml(item.originalText)}</td>
+                        <td style="color: #a78bfa; font-style: italic;">${escapeHtml(item.suggestedFix)}</td>
+                    </tr>
+                `;
+            }).join('');
 
-                    tableHTML += `<tr>
-                        <td>${escapeHtml(lineNum)}</td>
-                        <td><span class="issue-type ${issueClass}">${escapeHtml(issueType)}</span></td>
-                        <td><em>${escapeHtml(original)}</em></td>
-                        <td>${escapeHtml(fix)}</td>
-                    </tr>`;
-                }
-            });
+            return `
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Line #</th>
+                                <th>Issue Type</th>
+                                <th>Original Text</th>
+                                <th>Suggested Fix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rows}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
 
-            tableHTML += '</tbody></table>';
-            resultsContainer.innerHTML = tableHTML;
+        function renderStats(tableData) {
+            if (!tableData || tableData.length === 0) return '';
+
+            const ambiguityCount = tableData.filter(item => item.issueType.toLowerCase().includes('ambig')).length;
+            const missingCount = tableData.filter(item => item.issueType.toLowerCase().includes('missing')).length;
+            const conflictCount = tableData.filter(item => item.issueType.toLowerCase().includes('conflict')).length;
+
+            return `
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">${ambiguityCount}</div>
+                        <div class="stat-label">Ambiguities</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">${missingCount}</div>
+                        <div class="stat-label">Missing Reqs</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">${conflictCount}</div>
+                        <div class="stat-label">Conflicts</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSummary(analysisText) {
+            const summaryMatch = analysisText.match(/(?:Summary|SUMMARY|Summary of findings|SUMMARY OF FINDINGS)[:\s]+([\s\S]*?)(?=\n\n|$)/i);
+            
+            if (summaryMatch) {
+                return `
+                    <div style="margin-top: 20px; padding: 16px; background: rgba(99, 102, 241, 0.1); border-left: 3px solid #6366f1; border-radius: 8px;">
+                        <h3 style="color: #a78bfa; margin-bottom: 8px; font-size: 14px;">Summary</h3>
+                        <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6;">${escapeHtml(summaryMatch[1].trim())}</p>
+                    </div>
+                `;
+            }
+            return '';
+        }
+
+        function getIssueClass(issueType) {
+            const type = issueType.toLowerCase();
+            if (type.includes('ambig')) return 'issue-ambiguity';
+            if (type.includes('missing')) return 'issue-missing';
+            if (type.includes('conflict')) return 'issue-conflict';
+            return 'issue-ambiguity';
+        }
+
+        function showLoading() {
+            document.getElementById('results').classList.add('show');
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('resultsContent').innerHTML = '';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').classList.remove('show');
+        }
+
+        function showError(message) {
+            const errorEl = document.getElementById('error');
+            document.getElementById('error-text').textContent = message;
+            errorEl.classList.add('show');
+        }
+
+        function clearError() {
+            document.getElementById('error').classList.remove('show');
+        }
+
+        function clearAnalysis() {
+            document.getElementById('requirements').value = '';
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('resultsContent').innerHTML = '';
+            clearError();
         }
 
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
-        }
-
-        function clearResults() {
-            document.getElementById('requirementsInput').value = '';
-            document.getElementById('resultsContainer').innerHTML = '<div class="no-results"><p>Analysis results will appear here</p><p style="font-size: 12px; margin-top: 8px; color: #64748b;">Paste requirements and click "Analyze Document"</p></div>';
         }
     </script>
 </body>
